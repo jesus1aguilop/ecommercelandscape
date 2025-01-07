@@ -10,9 +10,28 @@ import {
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
+const translations = {
+  es: {
+    home: "Inicio",
+    products: "Productos",
+    about: "Sobre Nosotros",
+    contact: "Contáctanos",
+    language: "Español/Colombia"
+  },
+  en: {
+    home: "Home",
+    products: "Products",
+    about: "About Us",
+    contact: "Contact Us",
+    language: "English/USA"
+  }
+};
+
 export function Navbar() {
   const [isDark, setIsDark] = useState(false);
   const [language, setLanguage] = useState<"es" | "en">("es");
+
+  const t = translations[language];
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -29,16 +48,16 @@ export function Navbar() {
 
           <div className="hidden md:flex space-x-8">
             <Link to="/" className="text-foreground hover:text-primary transition-colors">
-              Inicio
+              {t.home}
             </Link>
             <Link to="/products" className="text-foreground hover:text-primary transition-colors">
-              Productos
+              {t.products}
             </Link>
             <Link to="/about" className="text-foreground hover:text-primary transition-colors">
-              Sobre Nosotros
+              {t.about}
             </Link>
             <Link to="/contact" className="text-foreground hover:text-primary transition-colors">
-              Contáctanos
+              {t.contact}
             </Link>
           </div>
 
@@ -53,7 +72,11 @@ export function Navbar() {
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon">
                       <Flag 
-                        className={`h-5 w-5 ${language === "es" ? "text-yellow-500" : "text-blue-500"}`}
+                        className={`h-5 w-5 ${
+                          language === "es" 
+                            ? "text-yellow-500 [&>path]:stroke-blue-500 [&>path]:stroke-[3]" 
+                            : "text-blue-500 [&>path]:stroke-red-500 [&>path]:stroke-[3]"
+                        }`}
                       />
                     </Button>
                   </DropdownMenuTrigger>
@@ -68,7 +91,7 @@ export function Navbar() {
                 </DropdownMenu>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{language === "es" ? "Español/Colombia" : "English/USA"}</p>
+                <p>{t.language}</p>
               </TooltipContent>
             </Tooltip>
           </div>

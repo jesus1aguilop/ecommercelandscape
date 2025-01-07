@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Product {
   id: number;
@@ -17,6 +18,27 @@ interface Product {
   price: number;
   image: string;
 }
+
+const translations = {
+  es: {
+    welcome: "Bienvenido a E-Store",
+    subtitle: "Descubre nuestra selección de productos tecnológicos de alta calidad. Innovación y excelencia en cada detalle.",
+    viewAll: "Ver todos los productos",
+    featuredProducts: "Productos Destacados",
+    viewInfo: "Ver información",
+    buyNow: "Comprar ahora",
+    addedToCart: "¡Producto agregado al carrito!",
+  },
+  en: {
+    welcome: "Welcome to E-Store",
+    subtitle: "Discover our selection of high-quality tech products. Innovation and excellence in every detail.",
+    viewAll: "View all products",
+    featuredProducts: "Featured Products",
+    viewInfo: "View information",
+    buyNow: "Buy now",
+    addedToCart: "Product added to cart!",
+  }
+};
 
 const featuredProducts: Product[] = [
   {
@@ -63,6 +85,16 @@ const featuredProducts: Product[] = [
 
 const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [language, setLanguage] = useState<"es" | "en">("es");
+  const { toast } = useToast();
+  const t = translations[language];
+
+  const handleBuy = () => {
+    toast({
+      title: t.addedToCart,
+      duration: 2000,
+    });
+  };
 
   return (
     <div className="animate-fadeIn">
@@ -72,14 +104,13 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-4xl font-bold mb-4">
-                Bienvenido a E-Store
+                {t.welcome}
               </h1>
               <p className="text-lg text-muted-foreground mb-6">
-                Descubre nuestra selección de productos tecnológicos de alta calidad.
-                Innovación y excelencia en cada detalle.
+                {t.subtitle}
               </p>
               <Button asChild>
-                <Link to="/products">Ver todos los productos</Link>
+                <Link to="/products">{t.viewAll}</Link>
               </Button>
             </div>
             <div className="hidden md:block">
@@ -97,7 +128,7 @@ const Index = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Productos Destacados
+            {t.featuredProducts}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
@@ -123,7 +154,7 @@ const Index = () => {
                       variant="outline"
                       onClick={() => setSelectedProduct(product)}
                     >
-                      Ver información
+                      {t.viewInfo}
                     </Button>
                   </div>
                 </div>
@@ -132,7 +163,7 @@ const Index = () => {
           </div>
           <div className="text-center mt-12">
             <Button asChild size="lg">
-              <Link to="/products">Ver todos los productos</Link>
+              <Link to="/products">{t.viewAll}</Link>
             </Button>
           </div>
         </div>
@@ -150,9 +181,15 @@ const Index = () => {
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
               <p className="mb-4">{selectedProduct?.fullDescription}</p>
-              <p className="text-lg font-bold">
+              <p className="text-lg font-bold mb-4">
                 ${selectedProduct?.price.toFixed(2)}
               </p>
+              <Button 
+                className="w-full" 
+                onClick={handleBuy}
+              >
+                {t.buyNow}
+              </Button>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
