@@ -62,7 +62,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 E-Store. Todos los derechos reservados.</p>
+          <p>&copy; 2024 Una iniciativa de jesu.dev 4lifeStore. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

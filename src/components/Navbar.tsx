@@ -43,7 +43,7 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-2xl font-bold text-primary">
-            E-Store
+            4life Store
           </Link>
 
           <div className="hidden md:flex space-x-8">
