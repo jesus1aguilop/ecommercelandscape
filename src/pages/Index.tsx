@@ -21,7 +21,7 @@ interface Product {
 
 const translations = {
   es: {
-    welcome: "Bienvenido a E-Store",
+    welcome: "Bienvenido a 4lifeStore",
     subtitle: "Descubre nuestra selección de productos tecnológicos de alta calidad. Innovación y excelencia en cada detalle.",
     viewAll: "Ver todos los productos",
     featuredProducts: "Productos Destacados",

@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">E-Store</h3>
+            <h3 className="text-lg font-semibold mb-4">4lifeStore</h3>
             <p className="text-sm text-muted-foreground">
               Tu tienda en línea de confianza para productos de calidad.
             </p>
