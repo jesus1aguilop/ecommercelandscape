@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Flag } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,10 +52,8 @@ export function Navbar() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon">
-                      <img
-                        src={language === "es" ? "/co.svg" : "/us.svg"}
-                        alt="Language"
-                        className="w-5 h-5"
+                      <Flag 
+                        className={`h-5 w-5 ${language === "es" ? "text-yellow-500" : "text-blue-500"}`}
                       />
                     </Button>
                   </DropdownMenuTrigger>
