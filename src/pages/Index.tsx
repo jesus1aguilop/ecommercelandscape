@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductDialog } from "@/components/ProductDialog";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Product {
   id: number;
@@ -134,7 +135,7 @@ const featuredProducts: Product[] = [
 
 const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [language, setLanguage] = useState<"es" | "en">("es");
+  const { language } = useLanguage();
   const t = translations[language];
 
   return (

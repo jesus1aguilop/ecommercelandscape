@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const translations = {
   es: {
@@ -29,7 +30,7 @@ const translations = {
 
 export function Navbar() {
   const [isDark, setIsDark] = useState(false);
-  const [language, setLanguage] = useState<"es" | "en">("es");
+  const { language, setLanguage } = useLanguage();
 
   const t = translations[language];
 
