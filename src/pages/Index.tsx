@@ -12,9 +12,18 @@ import { useToast } from "@/components/ui/use-toast";
 
 interface Product {
   id: number;
-  name: string;
-  description: string;
-  fullDescription: string;
+  name: {
+    es: string;
+    en: string;
+  };
+  description: {
+    es: string;
+    en: string;
+  };
+  fullDescription: {
+    es: string;
+    en: string;
+  };
   price: number;
   image: string;
 }
@@ -30,7 +39,7 @@ const translations = {
     addedToCart: "¡Producto agregado al carrito!",
   },
   en: {
-    welcome: "Welcome to E-Store",
+    welcome: "Welcome to 4lifeStore",
     subtitle: "Discover our selection of high-quality tech products. Innovation and excellence in every detail.",
     viewAll: "View all products",
     featuredProducts: "Featured Products",
@@ -43,41 +52,86 @@ const translations = {
 const featuredProducts: Product[] = [
   {
     id: 1,
-    name: "Smartwatch Pro",
-    description: "Reloj inteligente con múltiples funciones",
-    fullDescription: "Un reloj inteligente avanzado con monitor de ritmo cardíaco, GPS integrado, y más de 20 modos deportivos. Resistente al agua y con una batería que dura hasta 7 días.",
+    name: {
+      es: "Smartwatch Pro",
+      en: "Pro Smartwatch"
+    },
+    description: {
+      es: "Reloj inteligente con múltiples funciones",
+      en: "Smart watch with multiple functions"
+    },
+    fullDescription: {
+      es: "Un reloj inteligente avanzado con monitor de ritmo cardíaco, GPS integrado, y más de 20 modos deportivos. Resistente al agua y con una batería que dura hasta 7 días.",
+      en: "An advanced smartwatch with heart rate monitor, integrated GPS, and more than 20 sport modes. Water resistant and with a battery that lasts up to 7 days."
+    },
     price: 299.99,
     image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=400",
   },
   {
     id: 2,
-    name: "Auriculares Premium",
-    description: "Auriculares inalámbricos con cancelación de ruido",
-    fullDescription: "Experimenta un sonido cristalino con estos auriculares premium. Incluyen cancelación activa de ruido, 30 horas de batería y un diseño ergonómico para máxima comodidad.",
+    name: {
+      es: "Auriculares Premium",
+      en: "Premium Headphones"
+    },
+    description: {
+      es: "Auriculares inalámbricos con cancelación de ruido",
+      en: "Wireless headphones with noise cancellation"
+    },
+    fullDescription: {
+      es: "Experimenta un sonido cristalino con estos auriculares premium. Incluyen cancelación activa de ruido, 30 horas de batería y un diseño ergonómico para máxima comodidad.",
+      en: "Experience crystal clear sound with these premium headphones. They include active noise cancellation, 30 hours of battery life and an ergonomic design for maximum comfort."
+    },
     price: 199.99,
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400",
   },
   {
     id: 3,
-    name: "Tablet Ultra",
-    description: "Tablet de última generación",
-    fullDescription: "Una tablet potente con pantalla 4K de 11 pulgadas, procesador de última generación y 256GB de almacenamiento. Perfecta para trabajo y entretenimiento.",
+    name: {
+      es: "Tablet Ultra",
+      en: "Ultra Tablet"
+    },
+    description: {
+      es: "Tablet de última generación",
+      en: "Latest generation tablet"
+    },
+    fullDescription: {
+      es: "Una tablet potente con pantalla 4K de 11 pulgadas, procesador de última generación y 256GB de almacenamiento. Perfecta para trabajo y entretenimiento.",
+      en: "A powerful tablet with 11-inch 4K display, latest generation processor and 256GB storage. Perfect for work and entertainment."
+    },
     price: 499.99,
     image: "https://images.unsplash.com/photo-1542751110-97427bbecf20?w=500&h=400",
   },
   {
     id: 4,
-    name: "Cámara Digital Pro",
-    description: "Cámara profesional para fotografía",
-    fullDescription: "Captura momentos increíbles con esta cámara digital profesional. Sensor de 24MP, grabación 4K y sistema de enfoque automático avanzado.",
+    name: {
+      es: "Cámara Digital Pro",
+      en: "Pro Digital Camera"
+    },
+    description: {
+      es: "Cámara profesional para fotografía",
+      en: "Professional camera for photography"
+    },
+    fullDescription: {
+      es: "Captura momentos increíbles con esta cámara digital profesional. Sensor de 24MP, grabación 4K y sistema de enfoque automático avanzado.",
+      en: "Capture incredible moments with this professional digital camera. 24MP sensor, 4K recording and advanced autofocus system."
+    },
     price: 799.99,
     image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&h=400",
   },
   {
     id: 5,
-    name: "Altavoz Bluetooth",
-    description: "Altavoz portátil resistente al agua",
-    fullDescription: "Altavoz bluetooth portátil con sonido 360°, resistente al agua IPX7, 20 horas de batería y posibilidad de conectar múltiples unidades.",
+    name: {
+      es: "Altavoz Bluetooth",
+      en: "Bluetooth Speaker"
+    },
+    description: {
+      es: "Altavoz portátil resistente al agua",
+      en: "Waterproof portable speaker"
+    },
+    fullDescription: {
+      es: "Altavoz bluetooth portátil con sonido 360°, resistente al agua IPX7, 20 horas de batería y posibilidad de conectar múltiples unidades.",
+      en: "Portable bluetooth speaker with 360° sound, IPX7 water resistant, 20 hours of battery life and the ability to connect multiple units."
+    },
     price: 129.99,
     image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=400",
   },
@@ -138,13 +192,13 @@ const Index = () => {
               >
                 <img
                   src={product.image}
-                  alt={product.name}
+                  alt={product.name[language]}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                  <h3 className="text-xl font-semibold mb-2">{product.name[language]}</h3>
                   <p className="text-muted-foreground mb-4">
-                    {product.description}
+                    {product.description[language]}
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold">
@@ -173,14 +227,14 @@ const Index = () => {
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>{selectedProduct?.name}</DialogTitle>
+            <DialogTitle>{selectedProduct?.name[language]}</DialogTitle>
             <DialogDescription>
               <img
                 src={selectedProduct?.image}
-                alt={selectedProduct?.name}
+                alt={selectedProduct?.name[language]}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
-              <p className="mb-4">{selectedProduct?.fullDescription}</p>
+              <p className="mb-4">{selectedProduct?.fullDescription[language]}</p>
               <p className="text-lg font-bold mb-4">
                 ${selectedProduct?.price.toFixed(2)}
               </p>
