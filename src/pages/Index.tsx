@@ -137,8 +137,18 @@ const Index = () => {
   const [language, setLanguage] = useState<"es" | "en">("es");
   const t = translations[language];
 
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === "es" ? "en" : "es");
+  };
+
   return (
     <div className="animate-fadeIn">
+      <div className="flex justify-end p-4">
+        <Button onClick={toggleLanguage} variant="outline">
+          {language === "es" ? "EN" : "ES"}
+        </Button>
+      </div>
+
       <HeroSection translations={t} />
       
       <section className="py-16">
