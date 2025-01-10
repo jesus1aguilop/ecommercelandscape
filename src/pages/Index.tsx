@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { HeroSection } from "@/components/HeroSection";
+import { ProductCard } from "@/components/ProductCard";
+import { ProductDialog } from "@/components/ProductDialog";
 
 interface Product {
   id: number;
@@ -140,45 +134,12 @@ const featuredProducts: Product[] = [
 const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [language, setLanguage] = useState<"es" | "en">("es");
-  const { toast } = useToast();
   const t = translations[language];
-
-  const handleBuy = () => {
-    toast({
-      title: t.addedToCart,
-      duration: 2000,
-    });
-  };
 
   return (
     <div className="animate-fadeIn">
-      {/* Hero Section */}
-      <section className="bg-primary/5 py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className="text-4xl font-bold mb-4">
-                {t.welcome}
-              </h1>
-              <p className="text-lg text-muted-foreground mb-6">
-                {t.subtitle}
-              </p>
-              <Button asChild>
-                <Link to="/products">{t.viewAll}</Link>
-              </Button>
-            </div>
-            <div className="hidden md:block">
-              <img
-                src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500&h=400"
-                alt="Tech products"
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
+      <HeroSection translations={t} />
+      
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-center">
@@ -186,33 +147,13 @@ const Index = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
-              <div
+              <ProductCard
                 key={product.id}
-                className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-              >
-                <img
-                  src={product.image}
-                  alt={product.name[language]}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{product.name[language]}</h3>
-                  <p className="text-muted-foreground mb-4">
-                    {product.description[language]}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold">
-                      ${product.price.toFixed(2)}
-                    </span>
-                    <Button
-                      variant="outline"
-                      onClick={() => setSelectedProduct(product)}
-                    >
-                      {t.viewInfo}
-                    </Button>
-                  </div>
-                </div>
-              </div>
+                product={product}
+                language={language}
+                onViewInfo={setSelectedProduct}
+                translations={t}
+              />
             ))}
           </div>
           <div className="text-center mt-12">
@@ -223,31 +164,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Product Dialog */}
-      <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>{selectedProduct?.name[language]}</DialogTitle>
-            <DialogDescription>
-              <img
-                src={selectedProduct?.image}
-                alt={selectedProduct?.name[language]}
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <p className="mb-4">{selectedProduct?.fullDescription[language]}</p>
-              <p className="text-lg font-bold mb-4">
-                ${selectedProduct?.price.toFixed(2)}
-              </p>
-              <Button 
-                className="w-full" 
-                onClick={handleBuy}
-              >
-                {t.buyNow}
-              </Button>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <ProductDialog
+        product={selectedProduct}
+        language={language}
+        onOpenChange={(open) => !open && setSelectedProduct(null)}
+        translations={t}
+      />
     </div>
   );
 };
