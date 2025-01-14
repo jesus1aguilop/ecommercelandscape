@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductDialog } from "@/components/ProductDialog";
@@ -24,114 +22,278 @@ interface Product {
   image: string;
 }
 
-const translations = {
-  es: {
-    welcome: "Bienvenido a 4lifeStore",
-    subtitle: "Descubre nuestra selección de productos tecnológicos de alta calidad. Innovación y excelencia en cada detalle.",
-    viewAll: "Ver todos los productos",
-    featuredProducts: "Productos Destacados",
-    viewInfo: "Ver información",
-    buyNow: "Comprar ahora",
-    addedToCart: "¡Producto agregado al carrito!",
-  },
-  en: {
-    welcome: "Welcome to 4lifeStore",
-    subtitle: "Discover our selection of high-quality tech products. Innovation and excellence in every detail.",
-    viewAll: "View all products",
-    featuredProducts: "Featured Products",
-    viewInfo: "View information",
-    buyNow: "Buy now",
-    addedToCart: "Product added to cart!",
-  }
-};
-
-const featuredProducts: Product[] = [
+const products: Product[] = [
   {
     id: 1,
     name: {
-      es: "Smartwatch Pro",
-      en: "Pro Smartwatch"
+      es: "Cámara Digital Profesional",
+      en: "Professional Digital Camera"
     },
     description: {
-      es: "Reloj inteligente con múltiples funciones",
-      en: "Smart watch with multiple functions"
+      es: "Cámara DSLR de alta resolución con múltiples funciones",
+      en: "High-resolution DSLR camera with multiple features"
     },
     fullDescription: {
-      es: "Un reloj inteligente avanzado con monitor de ritmo cardíaco, GPS integrado, y más de 20 modos deportivos. Resistente al agua y con una batería que dura hasta 7 días.",
-      en: "An advanced smartwatch with heart rate monitor, integrated GPS, and more than 20 sport modes. Water resistant and with a battery that lasts up to 7 days."
+      es: "Cámara profesional con sensor full-frame, grabación 4K, pantalla táctil y conectividad WiFi integrada.",
+      en: "Professional camera with full-frame sensor, 4K recording, touch screen and built-in WiFi connectivity."
     },
-    price: 299.99,
-    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=400",
+    price: 1299.99,
+    image: "https://images.unsplash.com/photo-1452378174528-3090a4bba7b2"
   },
   {
     id: 2,
     name: {
-      es: "Auriculares Premium",
-      en: "Premium Headphones"
+      es: "Laptop Ultradelgada",
+      en: "Ultrathin Laptop"
     },
     description: {
-      es: "Auriculares inalámbricos con cancelación de ruido",
-      en: "Wireless headphones with noise cancellation"
+      es: "Portátil ligero y potente para profesionales",
+      en: "Light and powerful laptop for professionals"
     },
     fullDescription: {
-      es: "Experimenta un sonido cristalino con estos auriculares premium. Incluyen cancelación activa de ruido, 30 horas de batería y un diseño ergonómico para máxima comodidad.",
-      en: "Experience crystal clear sound with these premium headphones. They include active noise cancellation, 30 hours of battery life and an ergonomic design for maximum comfort."
+      es: "Laptop con procesador de última generación, 16GB RAM, SSD de 512GB y pantalla 4K.",
+      en: "Laptop with latest generation processor, 16GB RAM, 512GB SSD and 4K display."
     },
-    price: 199.99,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400",
+    price: 1499.99,
+    image: "https://images.unsplash.com/photo-1517022812141-23620dba5c23"
   },
   {
     id: 3,
     name: {
-      es: "Tablet Ultra",
-      en: "Ultra Tablet"
+      es: "Auriculares Inalámbricos",
+      en: "Wireless Headphones"
     },
     description: {
-      es: "Tablet de última generación",
-      en: "Latest generation tablet"
+      es: "Auriculares con cancelación de ruido activa",
+      en: "Headphones with active noise cancellation"
     },
     fullDescription: {
-      es: "Una tablet potente con pantalla 4K de 11 pulgadas, procesador de última generación y 256GB de almacenamiento. Perfecta para trabajo y entretenimiento.",
-      en: "A powerful tablet with 11-inch 4K display, latest generation processor and 256GB storage. Perfect for work and entertainment."
+      es: "Auriculares premium con 30 horas de batería, cancelación de ruido y sonido de alta fidelidad.",
+      en: "Premium headphones with 30-hour battery life, noise cancellation and high-fidelity sound."
     },
-    price: 499.99,
-    image: "https://images.unsplash.com/photo-1542751110-97427bbecf20?w=500&h=400",
+    price: 299.99,
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901"
   },
   {
     id: 4,
     name: {
-      es: "Cámara Digital Pro",
-      en: "Pro Digital Camera"
+      es: "Smartwatch Deportivo",
+      en: "Sports Smartwatch"
     },
     description: {
-      es: "Cámara profesional para fotografía",
-      en: "Professional camera for photography"
+      es: "Reloj inteligente con GPS y monitor cardíaco",
+      en: "Smart watch with GPS and heart rate monitor"
     },
     fullDescription: {
-      es: "Captura momentos increíbles con esta cámara digital profesional. Sensor de 24MP, grabación 4K y sistema de enfoque automático avanzado.",
-      en: "Capture incredible moments with this professional digital camera. 24MP sensor, 4K recording and advanced autofocus system."
+      es: "Smartwatch resistente al agua con GPS, monitor de ritmo cardíaco y más de 20 modos deportivos.",
+      en: "Water-resistant smartwatch with GPS, heart rate monitor and over 20 sports modes."
     },
-    price: 799.99,
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&h=400",
+    price: 199.99,
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
   },
   {
     id: 5,
     name: {
-      es: "Altavoz Bluetooth",
-      en: "Bluetooth Speaker"
+      es: "Tablet Gráfica",
+      en: "Graphics Tablet"
     },
     description: {
-      es: "Altavoz portátil resistente al agua",
-      en: "Waterproof portable speaker"
+      es: "Tablet para diseñadores y artistas digitales",
+      en: "Tablet for designers and digital artists"
     },
     fullDescription: {
-      es: "Altavoz bluetooth portátil con sonido 360°, resistente al agua IPX7, 20 horas de batería y posibilidad de conectar múltiples unidades.",
-      en: "Portable bluetooth speaker with 360° sound, IPX7 water resistant, 20 hours of battery life and the ability to connect multiple units."
+      es: "Tablet con 8192 niveles de presión, área activa grande y lápiz sin batería.",
+      en: "Tablet with 8192 pressure levels, large active area and battery-free pen."
+    },
+    price: 249.99,
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04"
+  },
+  {
+    id: 6,
+    name: {
+      es: "Altavoz Inteligente",
+      en: "Smart Speaker"
+    },
+    description: {
+      es: "Altavoz con asistente virtual integrado",
+      en: "Speaker with built-in virtual assistant"
+    },
+    fullDescription: {
+      es: "Altavoz inteligente con sonido 360°, control por voz y compatibilidad con múltiples servicios de streaming.",
+      en: "Smart speaker with 360° sound, voice control and compatibility with multiple streaming services."
     },
     price: 129.99,
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=400",
+    image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d"
   },
+  {
+    id: 7,
+    name: {
+      es: "Monitor Gaming",
+      en: "Gaming Monitor"
+    },
+    description: {
+      es: "Monitor curvo de alta frecuencia de actualización",
+      en: "Curved monitor with high refresh rate"
+    },
+    fullDescription: {
+      es: "Monitor gaming de 27\" con 165Hz, 1ms de respuesta y tecnología G-Sync.",
+      en: "27\" gaming monitor with 165Hz, 1ms response time and G-Sync technology."
+    },
+    price: 399.99,
+    image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a"
+  },
+  {
+    id: 8,
+    name: {
+      es: "Teclado Mecánico",
+      en: "Mechanical Keyboard"
+    },
+    description: {
+      es: "Teclado gaming con switches mecánicos",
+      en: "Gaming keyboard with mechanical switches"
+    },
+    fullDescription: {
+      es: "Teclado mecánico con retroiluminación RGB, switches Cherry MX y reposamuñecas ergonómico.",
+      en: "Mechanical keyboard with RGB backlight, Cherry MX switches and ergonomic wrist rest."
+    },
+    price: 149.99,
+    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1"
+  },
+  {
+    id: 9,
+    name: {
+      es: "Router WiFi 6",
+      en: "WiFi 6 Router"
+    },
+    description: {
+      es: "Router de última generación con WiFi 6",
+      en: "Next-generation router with WiFi 6"
+    },
+    fullDescription: {
+      es: "Router con WiFi 6, velocidades de hasta 5400Mbps y cobertura para hogares grandes.",
+      en: "Router with WiFi 6, speeds up to 5400Mbps and coverage for large homes."
+    },
+    price: 279.99,
+    image: "https://images.unsplash.com/photo-1498936178812-4b2e558d2937"
+  },
+  {
+    id: 10,
+    name: {
+      es: "Impresora 3D",
+      en: "3D Printer"
+    },
+    description: {
+      es: "Impresora 3D para makers y entusiastas",
+      en: "3D printer for makers and enthusiasts"
+    },
+    fullDescription: {
+      es: "Impresora 3D con volumen de impresión grande, doble extrusor y pantalla táctil.",
+      en: "3D printer with large print volume, dual extruder and touch screen."
+    },
+    price: 599.99,
+    image: "https://images.unsplash.com/photo-1452960962994-acf4fd70b632"
+  },
+  {
+    id: 11,
+    name: {
+      es: "Drone con Cámara 4K",
+      en: "4K Camera Drone"
+    },
+    description: {
+      es: "Drone profesional con cámara de alta resolución",
+      en: "Professional drone with high-resolution camera"
+    },
+    fullDescription: {
+      es: "Drone con cámara 4K, 30 minutos de vuelo, GPS y seguimiento automático.",
+      en: "Drone with 4K camera, 30 minutes flight time, GPS and automatic tracking."
+    },
+    price: 799.99,
+    image: "https://images.unsplash.com/photo-1518877593221-1f28583780b4"
+  },
+  {
+    id: 12,
+    name: {
+      es: "Consola de Videojuegos",
+      en: "Gaming Console"
+    },
+    description: {
+      es: "Última generación de consolas gaming",
+      en: "Latest generation gaming console"
+    },
+    fullDescription: {
+      es: "Consola con procesador de última generación, 1TB de almacenamiento y ray tracing.",
+      en: "Console with latest generation processor, 1TB storage and ray tracing."
+    },
+    price: 499.99,
+    image: "https://images.unsplash.com/photo-1439886183900-e79ec0057170"
+  },
+  {
+    id: 13,
+    name: {
+      es: "Proyector 4K",
+      en: "4K Projector"
+    },
+    description: {
+      es: "Proyector de cine en casa con resolución 4K",
+      en: "Home theater projector with 4K resolution"
+    },
+    fullDescription: {
+      es: "Proyector 4K con 3000 lúmenes, HDR y corrección de keystone automática.",
+      en: "4K projector with 3000 lumens, HDR and automatic keystone correction."
+    },
+    price: 899.99,
+    image: "https://images.unsplash.com/photo-1441057206919-63d19fac2369"
+  },
+  {
+    id: 14,
+    name: {
+      es: "Cargador Inalámbrico",
+      en: "Wireless Charger"
+    },
+    description: {
+      es: "Base de carga rápida inalámbrica",
+      en: "Fast wireless charging pad"
+    },
+    fullDescription: {
+      es: "Cargador inalámbrico con carga rápida de 15W y compatibilidad universal.",
+      en: "Wireless charger with 15W fast charging and universal compatibility."
+    },
+    price: 39.99,
+    image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f"
+  },
+  {
+    id: 15,
+    name: {
+      es: "Webcam 4K",
+      en: "4K Webcam"
+    },
+    description: {
+      es: "Cámara web profesional para streaming",
+      en: "Professional webcam for streaming"
+    },
+    fullDescription: {
+      es: "Webcam 4K con micrófono dual, corrección de luz y enfoque automático.",
+      en: "4K webcam with dual microphone, light correction and autofocus."
+    },
+    price: 159.99,
+    image: "https://images.unsplash.com/photo-1438565434616-3ef039228b15"
+  }
 ];
+
+const translations = {
+  es: {
+    featuredProducts: "Productos Destacados",
+    viewInfo: "Ver Info",
+    buyNow: "Comprar Ahora",
+    addedToCart: "¡Agregado al carrito!",
+  },
+  en: {
+    featuredProducts: "Featured Products",
+    viewInfo: "View Info",
+    buyNow: "Buy Now",
+    addedToCart: "Added to cart!",
+  }
+};
 
 const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -139,38 +301,32 @@ const Index = () => {
   const t = translations[language];
 
   return (
-    <div className="animate-fadeIn">
-      <HeroSection translations={t} />
-      
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            {t.featuredProducts}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                language={language}
-                onViewInfo={setSelectedProduct}
-                translations={t}
-              />
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button asChild size="lg">
-              <Link to="/products">{t.viewAll}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
+    <div className="container mx-auto px-4 py-8">
+      <HeroSection />
+      <h2 className="text-3xl font-bold text-center mb-8">
+        {t.featuredProducts}
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            language={language}
+            onViewInfo={setSelectedProduct}
+            translations={{
+              viewInfo: t.viewInfo,
+            }}
+          />
+        ))}
+      </div>
       <ProductDialog
         product={selectedProduct}
         language={language}
         onOpenChange={(open) => !open && setSelectedProduct(null)}
-        translations={t}
+        translations={{
+          buyNow: t.buyNow,
+          addedToCart: t.addedToCart,
+        }}
       />
     </div>
   );
