@@ -286,12 +286,18 @@ const translations = {
     viewInfo: "Ver Info",
     buyNow: "Comprar Ahora",
     addedToCart: "¡Agregado al carrito!",
+    welcome: "Bienvenido a nuestra Tienda Tech",
+    subtitle: "Descubre nuestra selección de productos tecnológicos de alta calidad",
+    viewAll: "Ver Todos"
   },
   en: {
     featuredProducts: "Featured Products",
     viewInfo: "View Info",
     buyNow: "Buy Now",
     addedToCart: "Added to cart!",
+    welcome: "Welcome to our Tech Store",
+    subtitle: "Discover our selection of high-quality tech products",
+    viewAll: "View All"
   }
 };
 
@@ -302,7 +308,11 @@ const Index = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <HeroSection />
+      <HeroSection translations={{
+        welcome: t.welcome,
+        subtitle: t.subtitle,
+        viewAll: t.viewAll
+      }} />
       <h2 className="text-3xl font-bold text-center mb-8">
         {t.featuredProducts}
       </h2>
