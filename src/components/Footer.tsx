@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 
 export function Footer() {
   return (
@@ -50,13 +51,13 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Síguenos</h3>
             <div className="flex space-x-4">
               <a href="#" className="text-primary hover:text-primary/80">
-                Facebook
+                <Facebook size={24} />
               </a>
               <a href="#" className="text-primary hover:text-primary/80">
-                Twitter
+                <Twitter size={24} />
               </a>
               <a href="#" className="text-primary hover:text-primary/80">
-                Instagram
+                <Instagram size={24} />
               </a>
             </div>
           </div>
