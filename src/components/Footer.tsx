@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook, Instagram, X } from "lucide-react";
 
 export function Footer() {
   return (
@@ -54,7 +54,7 @@ export function Footer() {
                 <Facebook size={24} />
               </a>
               <a href="#" className="text-primary hover:text-primary/80">
-                <Twitter size={24} />
+                <X size={24} />
               </a>
               <a href="#" className="text-primary hover:text-primary/80">
                 <Instagram size={24} />
