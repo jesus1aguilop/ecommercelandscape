@@ -43,13 +43,13 @@ export function Navbar() {
     <nav className="fixed w-full z-50 glass-nav">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/3d61e228-8e83-42fb-9cdd-ae58c0b74766.png" 
-              alt="4Life Store Logo" 
-              className="h-20 w-auto object-contain" 
-            />
-          </Link>
+        <Link to="/" className="flex items-center">
+      <img 
+        src="/lovable-uploads/3d61e228-8e83-42fb-9cdd-ae58c0b74766.png" 
+        alt="4Life Store Logo" 
+        className="h-12 w-auto object-contain sm:h-16" 
+      />
+    </Link>
 
           <div className="hidden md:flex space-x-8">
             <Link to="/" className="text-foreground hover:text-primary transition-colors">
