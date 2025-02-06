@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, X, WhatsApp } from "lucide-react";
+import { Facebook, Instagram, X, MessageCircle } from "lucide-react";
 
 export function Footer() {
   const handleWhatsAppClick = () => {
@@ -77,7 +77,7 @@ export function Footer() {
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center"
         aria-label="Contactar por WhatsApp"
       >
-        <WhatsApp size={24} />
+        <MessageCircle size={24} />
       </button>
     </footer>
   );
