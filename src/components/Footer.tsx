@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, X, MessageCircle } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 
 export function Footer() {
   const handleWhatsAppClick = () => {
@@ -55,13 +55,13 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Síguenos</h3>
             <div className="flex space-x-4">
               <a href="#" className="text-primary hover:text-primary/80">
-                <Facebook size={24} />
+                <FaFacebookF size={24} />
               </a>
               <a href="#" className="text-primary hover:text-primary/80">
-                <X size={24} />
+                <FaXTwitter size={24} />
               </a>
               <a href="#" className="text-primary hover:text-primary/80">
-                <Instagram size={24} />
+                <FaInstagram size={24} />
               </a>
             </div>
           </div>
@@ -77,7 +77,7 @@ export function Footer() {
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center"
         aria-label="Contactar por WhatsApp"
       >
-        <MessageCircle size={24} />
+        <FaWhatsapp size={24} />
       </button>
     </footer>
   );
