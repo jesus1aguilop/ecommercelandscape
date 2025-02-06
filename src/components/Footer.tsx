@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, X } from "lucide-react";
+import { Facebook, Instagram, X, WhatsApp } from "lucide-react";
 
 export function Footer() {
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/123456789', '_blank');
+  };
+
   return (
-    <footer className="bg-primary/5 border-t">
+    <footer className="bg-primary/5 border-t relative">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -66,6 +70,15 @@ export function Footer() {
           <p>&copy; 2024 Una iniciativa de jesu.dev 4lifeStore. Todos los derechos reservados.</p>
         </div>
       </div>
+
+      {/* WhatsApp Button */}
+      <button
+        onClick={handleWhatsAppClick}
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center"
+        aria-label="Contactar por WhatsApp"
+      >
+        <WhatsApp size={24} />
+      </button>
     </footer>
   );
 }
