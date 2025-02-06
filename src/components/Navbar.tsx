@@ -47,7 +47,7 @@ export function Navbar() {
             <img 
               src="/lovable-uploads/3d61e228-8e83-42fb-9cdd-ae58c0b74766.png" 
               alt="4Life Store Logo" 
-              className="h-16 w-auto object-contain" 
+              className="h-20 w-auto object-contain" 
             />
           </Link>
 
